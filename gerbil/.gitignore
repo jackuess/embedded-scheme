@@ -1,0 +1,4 @@
+embedded_scheme
+scmlib*.c
+*.o*
+*.ssi
