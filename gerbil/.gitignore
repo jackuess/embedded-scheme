@@ -1,4 +1,8 @@
 embedded_scheme
 scmlib*.c
+scmlib.scm
+scmlib__0.scm
+scmlib__rt.scm
+static/
 *.o*
 *.ssi

@@ -1,10 +1,12 @@
 (import :std/net/request)
 
+(declare (not optimize-dead-definitions))
+(extern main)
+(export #t)
+
 (define (foo)
-  (display "Foo from Gerbil")
-  (newline)
-  (display (http-get "http://example.com/"))
-  (newline)
+  (displayln "Foo from Gerbil")
+  (displayln (request-status (http-get "http://example.com/")))
   5)
 
 (define (get-assoc-list)

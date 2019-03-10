@@ -9,7 +9,7 @@ extern ___SCMOBJ get_assoc_list(void);
 extern ___SCMOBJ get_assoc_list2(void);
 extern ___SCMOBJ string_to_symbol(char *symbol);
 
-#define SCHEME_LIBRARY_LINKER ___LNK_scmlib____0__
+#define SCHEME_LIBRARY_LINKER ___LNK_scmlib__
 
 ___BEGIN_C_LINKAGE
     extern ___mod_or_lnk SCHEME_LIBRARY_LINKER (___global_state);
