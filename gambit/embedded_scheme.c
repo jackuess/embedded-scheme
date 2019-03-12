@@ -2,12 +2,8 @@
 
 #define ___VERSION 409003
 #define __USE_POSIX
-#include <gambit.h>
 
-extern int foo(void);
-extern ___SCMOBJ get_assoc_list(void);
-extern ___SCMOBJ get_assoc_list2(void);
-extern ___SCMOBJ string_to_symbol(char *symbol);
+#include "scmlib.h"
 
 #define SCHEME_LIBRARY_LINKER ___LNK_scmlib__
 
@@ -80,6 +76,10 @@ int main(void) {
 
         lst2 = ___CDR(lst2);
     }
+
+    struct Foo some_foo_struct = get_struct();
+    printf("<struct Foo(foo=%d, bar=%d, baz=%d)>\n",
+           some_foo_struct.foo, some_foo_struct.bar, some_foo_struct.baz);
 
     cleanup_gambit();
 
