@@ -57,10 +57,34 @@ ___SCMOBJ FOO_to_SCMOBJ (___processor_state ___ps, struct Foo src, ___SCMOBJ *ds
     ___BEGIN_SFUN_INT_TO_SCMOBJ(src.foo, foo_scmobj, arg_num)
     ___BEGIN_SFUN_INT_TO_SCMOBJ(src.bar, bar_scmobj, arg_num)
     ___BEGIN_SFUN_INT_TO_SCMOBJ(src.baz, baz_scmobj, arg_num)
-    *dst = ___EXT(___make_pair) (___ps, foo_scmobj, bar_scmobj);
-    if (___FIXNUMP(*dst)) {
-        ___err = *dst;
+
+    ___SCMOBJ foopair = ___EXT(___make_pair) (___ps, string_to_symbol("foo"), foo_scmobj);
+    if (___FIXNUMP(foopair)) {
+        ___err = foopair;
     }
+    ___SCMOBJ barpair = ___EXT(___make_pair) (___ps, string_to_symbol("bar"), bar_scmobj);
+    if (___FIXNUMP(barpair)) {
+        ___err = barpair;
+    }
+    ___SCMOBJ bazpair = ___EXT(___make_pair) (___ps, string_to_symbol("baz"), baz_scmobj);
+    if (___FIXNUMP(bazpair)) {
+        ___err = bazpair;
+    }
+
+    *dst = ___NUL;
+    *dst = ___EXT(___make_pair) (___ps, bazpair, *dst);
+    if (___FIXNUMP(*dst)) {
+        ___err = foopair;
+    }
+    *dst = ___EXT(___make_pair) (___ps, barpair, *dst);
+    if (___FIXNUMP(*dst)) {
+        ___err = foopair;
+    }
+    *dst = ___EXT(___make_pair) (___ps, foopair, *dst);
+    if (___FIXNUMP(*dst)) {
+        ___err = foopair;
+    }
+
     ___END_SFUN_INT_TO_SCMOBJ(src.foo, foo_scmobj, arg_num)
     ___END_SFUN_INT_TO_SCMOBJ(src.bar, foo_scmobj, arg_num)
     ___END_SFUN_INT_TO_SCMOBJ(src.baz, foo_scmobj, arg_num)
@@ -92,3 +116,7 @@ c-declare-end
 
 (c-define (c-get-struct) () c-foo-struct "get_struct" "extern"
           '((foo . 3) (bar . 2) (baz . 1)))
+
+(c-define (c-print-struct struct) (c-foo-struct) void "print_struct" "extern"
+          (display struct)
+          (newline))

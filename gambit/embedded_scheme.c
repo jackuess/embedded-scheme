@@ -80,6 +80,7 @@ int main(void) {
     struct Foo some_foo_struct = get_struct();
     printf("<struct Foo(foo=%d, bar=%d, baz=%d)>\n",
            some_foo_struct.foo, some_foo_struct.bar, some_foo_struct.baz);
+    print_struct(some_foo_struct);
 
     cleanup_gambit();
 
