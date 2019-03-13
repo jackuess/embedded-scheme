@@ -74,15 +74,15 @@ ___SCMOBJ FOO_to_SCMOBJ (___processor_state ___ps, struct Foo src, ___SCMOBJ *ds
     *dst = ___NUL;
     *dst = ___EXT(___make_pair) (___ps, bazpair, *dst);
     if (___FIXNUMP(*dst)) {
-        ___err = foopair;
+        ___err = *dst;
     }
     *dst = ___EXT(___make_pair) (___ps, barpair, *dst);
     if (___FIXNUMP(*dst)) {
-        ___err = foopair;
+        ___err = *dst;
     }
     *dst = ___EXT(___make_pair) (___ps, foopair, *dst);
     if (___FIXNUMP(*dst)) {
-        ___err = foopair;
+        ___err = *dst;
     }
 
     ___END_SFUN_INT_TO_SCMOBJ(src.foo, foo_scmobj, arg_num)
